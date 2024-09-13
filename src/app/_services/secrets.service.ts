@@ -9,7 +9,7 @@ export class SecretsService {
 
   constructor(private http: HttpClient) { }
 
-  BASE_URL: string = "http://localhost:3000";
+  BASE_URL: string = "https://whispxr-back.onrender.com";
 
   createSecret(secret: string, password: string, expiration: Date): Observable<any> {
     return this.http.post(`${this.BASE_URL}/gensecret`, {

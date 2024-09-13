@@ -13,7 +13,7 @@ import { AlertService } from '../../_services/alert.service';
 })
 export class SecretFormComponent {
 
-  base_url: string = 'http://localhost:4200/';
+  base_url: string = 'https://whispxr-back.onrender.com/';
 
   constructor(private SecretsService: SecretsService, private clipboard: Clipboard, private AlertService: AlertService) { }
 
