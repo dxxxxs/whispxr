@@ -13,7 +13,7 @@ import { AlertService } from '../../_services/alert.service';
 })
 export class SecretFormComponent {
 
-  base_url: string = 'https://whispxr-front.onrender.com/#/';
+  base_url: string = 'https://whispxr.onrender.com/#/';
 
   constructor(private SecretsService: SecretsService, private clipboard: Clipboard, private AlertService: AlertService) { }
 
