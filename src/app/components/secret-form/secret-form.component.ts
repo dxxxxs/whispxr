@@ -45,9 +45,9 @@ export class SecretFormComponent {
       this.SecretsService.createSecret(secret, password, date).subscribe({
         next: res => {
           console.log(res);
-          this.createdSecretUUID = res.uuid;
+          this.createdSecretUUID = res.body.uuid;
           this.final_url = this.base_url + this.createdSecretUUID;
-          this.AlertService.fireSuccessAlert(res.message, this.final_url);
+          this.AlertService.fireSuccessAlert(res.body.message, this.final_url);
           this.form.reset();
         },
         error: err => console.log(err)

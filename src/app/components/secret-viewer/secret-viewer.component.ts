@@ -33,7 +33,7 @@ export class SecretViewerComponent {
     if (password && this.uuid) {
       this.SecretsService.getSecret(this.uuid, password).subscribe({
         next: res => {
-          this.secret = res.secret;
+          this.secret = res.body.secret;
           this.AlertService.firePlainMessageAlert(this.secret);
         },
         error: err => console.log(err)
