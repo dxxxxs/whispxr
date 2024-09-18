@@ -27,16 +27,22 @@ export class SecretViewerComponent {
     password: new FormControl('')
   });
 
+  isWaitingResponse:boolean = false;
 
   submit() {
     const password = this.form.value.password;
     if (password && this.uuid) {
+      this.isWaitingResponse = true;
       this.SecretsService.getSecret(this.uuid, password).subscribe({
         next: res => {
+          this.isWaitingResponse = false;
           this.secret = res.body.secret;
-          this.AlertService.firePlainMessageAlert(this.secret);
         },
-        error: err => console.log(err)
+        error: err => {
+          console.log(err);
+          this.isWaitingResponse = false;
+          this.AlertService.fireToastErrorTimer('Whispxr expired or password is wrong')
+        }
       });
     }
   }
