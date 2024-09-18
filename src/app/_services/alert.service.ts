@@ -17,15 +17,59 @@ export class AlertService {
     })
   }
 
-  fireSuccessAlert(title:string,text:string){
+  fireSuccessAlert(title: string, text: string) {
     Swal.fire({
       title: title,
       text: text,
-      icon: "success"
+      icon: "success",
+      allowOutsideClick: false,
     });
   }
 
-  firePlainMessageAlert(text:string){
+  fireToastSuccessTimer(text: string) {
+    // Crear una instancia separada para la toast
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 5000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer);
+        toast.addEventListener('mouseleave', Swal.resumeTimer);
+      }
+    });
+
+    // Mostrar la toast de éxito
+    Toast.fire({
+      icon: 'success',
+      title: text
+    });
+  }
+
+  fireToastErrorTimer(text: string) {
+    // Crear una instancia separada para la toast
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 5000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer);
+        toast.addEventListener('mouseleave', Swal.resumeTimer);
+      }
+    });
+
+    // Mostrar la toast de éxito
+    Toast.fire({
+      icon: 'error',
+      title: text
+    });
+  }
+
+
+  firePlainMessageAlert(text: string) {
     Swal.fire({
       text: text
     });

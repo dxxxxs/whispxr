@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { NavigationStart, Router, RouterOutlet } from '@angular/router';
 import { SecretsService } from './_services/secrets.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { SecretViewerComponent } from './components/secret-viewer/secret-viewer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-root',
@@ -16,11 +17,16 @@ import { FooterComponent } from './components/footer/footer.component';
 export class AppComponent {
   title = 'front';
 
-  constructor() {
-
+  constructor(private SecretService: SecretsService, private router: Router) {
+    this.SecretService.healthCheck().subscribe((res) => console.log(res.statusText));
   }
 
-
-
+  ngOnInit(): void {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        Swal.close();
+      }
+    });
+  }
 
 }
