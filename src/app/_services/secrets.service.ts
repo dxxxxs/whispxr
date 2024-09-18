@@ -26,4 +26,8 @@ export class SecretsService {
       password: password
     }, { observe: 'response' });
   }
+
+  healthCheck(): Observable<HttpResponse<any>> {
+    return this.http.get<any>(`${this.BASE_URL}/api/health-check`, { observe: 'response' });
+  }
 }
