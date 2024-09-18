@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { SecretViewerComponent } from "../../components/secret-viewer/secret-viewer.component";
+import { NavigationStart, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-secret-page',
@@ -10,5 +12,5 @@ import { SecretViewerComponent } from "../../components/secret-viewer/secret-vie
 })
 export class SecretPageComponent {
 
-
+  
 }
