@@ -46,4 +46,10 @@ export class SecretViewerComponent {
       });
     }
   }
+
+  isPasswordVisible: boolean = false;
+  
+  togglePasswordVisibility() {
+    this.isPasswordVisible = !this.isPasswordVisible;
+  }
 }

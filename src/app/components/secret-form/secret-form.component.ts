@@ -29,23 +29,22 @@ export class SecretFormComponent {
   createdSecretUUID: string = '';
   final_url: string = '';
   isWaitingResponse: boolean = false;
-
+  
   submit() {
-
-
+    
+    
     const secret = this.form.value.text;
     const password = this.form.value.password;
     const expirationTime = this.form.value.expirationTime;
-
     const date = new Date();
-
+    
     if (expirationTime) {
       const expirationMinutes = parseInt(expirationTime, 10);
       if (!isNaN(expirationMinutes)) {
         date.setMinutes(date.getMinutes() + expirationMinutes);
       }
     }
-
+    
     if (secret && password) {
       this.isWaitingResponse = true;
       this.SecretsService.createSecret(secret, password, date).subscribe({
@@ -66,7 +65,14 @@ export class SecretFormComponent {
       });
     }
   }
+  
+  isPasswordVisible: boolean = false;
+  
+  togglePasswordVisibility() {
+    this.isPasswordVisible = !this.isPasswordVisible;
+  }
 
+  
   copyToClipboard() {
     this.clipboard.copy(this.final_url);
     this.AlertService.fireToastSuccessTimer("URL copied to clipboard");
