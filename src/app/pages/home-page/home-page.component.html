@@ -5,10 +5,14 @@
         <h1>Whispxr</h1>
         <h2>Your secrets, safely kept</h2>
       </div>
+      <div class="mt-5 p-2">
+        <h1>{{count}}</h1>
+        <h2>whispxr created</h2>
+      </div>
     </div>
     <div class="d-flex align-items-center flex-column flex-fill mt-5">
       <h3>Create whispxr</h3>
-      <app-secret-form style="width: 100%; max-width: 500px;"></app-secret-form>
+      <app-secret-form style="width: 100%; max-width: 500px;" (createdSecret)="getCounter()"></app-secret-form>
     </div>
   </div>
 </div>

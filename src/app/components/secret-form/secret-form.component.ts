@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { SecretsService } from '../../_services/secrets.service';
 import { Clipboard } from '@angular/cdk/clipboard';
@@ -12,6 +12,8 @@ import { AlertService } from '../../_services/alert.service';
   styleUrl: './secret-form.component.scss'
 })
 export class SecretFormComponent {
+  
+  @Output() createdSecret = new EventEmitter<any>();
 
   base_url: string = 'https://whispxr.onrender.com/#/';
 
@@ -53,6 +55,7 @@ export class SecretFormComponent {
           this.createdSecretUUID = res.body.uuid;
           this.final_url = this.base_url + this.createdSecretUUID;
           this.AlertService.fireToastSuccessTimer("Whispxr created successfully");
+          this.createdSecret.emit();
           this.form.reset();
         },
         error: err => {
