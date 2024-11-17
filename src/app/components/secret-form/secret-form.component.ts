@@ -3,6 +3,10 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { SecretsService } from '../../_services/secrets.service';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { AlertService } from '../../_services/alert.service';
+import { driver } from "driver.js";
+import "driver.js/dist/driver.css";
+
+const driverObj_2 = driver();
 
 @Component({
   selector: 'app-secret-form',
@@ -12,7 +16,7 @@ import { AlertService } from '../../_services/alert.service';
   styleUrl: './secret-form.component.scss'
 })
 export class SecretFormComponent {
-  
+
   @Output() createdSecret = new EventEmitter<any>();
 
   base_url: string = 'https://whispxr.onrender.com/#/';
@@ -29,22 +33,22 @@ export class SecretFormComponent {
   createdSecretUUID: string = '';
   final_url: string = '';
   isWaitingResponse: boolean = false;
-  
+
   submit() {
-    
-    
+
+
     const secret = this.form.value.text;
     const password = this.form.value.password;
     const expirationTime = this.form.value.expirationTime;
     const date = new Date();
-    
+
     if (expirationTime) {
       const expirationMinutes = parseInt(expirationTime, 10);
       if (!isNaN(expirationMinutes)) {
         date.setMinutes(date.getMinutes() + expirationMinutes);
       }
     }
-    
+
     if (secret && password) {
       this.isWaitingResponse = true;
       this.SecretsService.createSecret(secret, password, date).subscribe({
@@ -55,6 +59,21 @@ export class SecretFormComponent {
           this.AlertService.fireToastSuccessTimer("Whispxr created successfully");
           this.createdSecret.emit();
           this.form.reset();
+
+          const checkElement = setInterval(() => {
+            const element = document.querySelector('#secret_url_container');
+            if (element) {
+              clearInterval(checkElement);
+              driverObj_2.highlight({
+                element: '#secret_url_container',
+                popover: {
+                  title: 'Congratulations!',
+                  description: 'You’ve created your first Whispxr! Share it now and don’t forget the password.',
+                },
+              });
+            }
+          }, 100); // Verifica cada 100ms
+
         },
         error: err => {
           console.log(err);
@@ -64,14 +83,14 @@ export class SecretFormComponent {
       });
     }
   }
-  
+
   isPasswordVisible: boolean = false;
-  
+
   togglePasswordVisibility() {
     this.isPasswordVisible = !this.isPasswordVisible;
   }
 
-  
+
   copyToClipboard() {
     this.clipboard.copy(this.final_url);
     this.AlertService.fireToastSuccessTimer("URL copied to clipboard");
