@@ -2,6 +2,8 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "allowJs": true, // Permite que TypeScript procese archivos JavaScript
+    "checkJs": false, // Si quieres que TypeScript verifique errores de tipo en archivos JS, ponlo en true
     "outDir": "./dist/out-tsc",
     "strict": true,
     "noImplicitOverride": true,
