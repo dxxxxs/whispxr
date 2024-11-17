@@ -1,8 +1,8 @@
 <div class="container mt-5 pb-5 mb-5">
   <div class="d-flex justify-content-between flex-wrap flex-row align-items-stretch">
     <!-- Primer bloque: siempre segundo en dispositivos pequeños -->
-    <div class="d-flex align-items-start flex-column flex-fill order-2 order-md-1 white-text">
-      <div class="mt-5 p-2" style="width: 30vw;">
+    <div class="d-flex align-items-start flex-column flex-fill white-text">
+      <div class="mt-5 p-2" style="width: 100%;">
         <h1 class="text-shadow-pop-tl">Whispxr</h1>
         <h2>Your secrets, safely kept</h2>
       </div>
@@ -10,9 +10,12 @@
         <h1 class="text-shadow-pop-tl">{{count}}</h1>
         <h2>whispxr created</h2>
       </div>
+      <div class="d-block d-sm-none my-5 align-items-center justify-content-center w-100">
+        <button class=" btn btn-primary btn-lg w-100">Try it</button>
+      </div>
     </div>
     <!-- Segundo bloque: siempre primero en dispositivos pequeños -->
-    <div class="d-flex flex-column align-items-center flex-fill order-1 order-md-2 justify-content-center"
+    <div class="d-flex flex-column align-items-center flex-fill justify-content-center"
       style="position: relative; min-height: 100vh; max-width: 500px;">
       <app-secret-form style="width: 100%; max-width: 500px; flex-shrink: 0; height: 100%;"
         (createdSecret)="getCounter()">

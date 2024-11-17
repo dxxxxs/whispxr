@@ -72,7 +72,7 @@ export class SecretFormComponent {
                 },
               });
             }
-          }, 100); // Verifica cada 100ms
+          }, 100);
 
         },
         error: err => {
@@ -110,5 +110,21 @@ export class SecretFormComponent {
 
   shareOnTwitter() {
     window.open(`https://twitter.com/share?url=${encodeURIComponent(this.final_url)}`, '_blank');
+  }
+  shareNavigator() {
+    const shareData: ShareData = {
+      title: "Whispxr",
+      text: "Reveal the message!",
+      url: this.final_url,
+    };
+
+    if (navigator.share) {
+      navigator
+        .share(shareData)
+        .then(() => console.log('Mensaje compartido exitosamente'))
+        .catch((err) => console.error('Error al compartir:', err));
+    } else {
+      console.warn('La API de compartir no está disponible en este navegador.');
+    }
   }
 }
