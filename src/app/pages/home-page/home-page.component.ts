@@ -30,8 +30,6 @@ export class HomePageComponent {
 
   constructor(private SecretsService: SecretsService) {
     this.getCounter();
-    driverObj.drive();
-    // driverObj2.drive()
   }
 
   getCounter() {
@@ -55,6 +53,10 @@ export class HomePageComponent {
         clearInterval(interval); // Detiene la animación
       }
     }, incrementTime);
+  }
+
+  ngOnInit() {
+    driverObj.drive();
   }
 
 }
