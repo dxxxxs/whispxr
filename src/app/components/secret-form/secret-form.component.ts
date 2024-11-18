@@ -4,7 +4,6 @@ import { SecretsService } from '../../_services/secrets.service';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { AlertService } from '../../_services/alert.service';
 import { driver } from "driver.js";
-import "driver.js/dist/driver.css";
 
 const driverObj_2 = driver();
 

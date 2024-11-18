@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { SecretFormComponent } from '../../components/secret-form/secret-form.component';
 import { SecretsService } from '../../_services/secrets.service';
 import { driver } from "driver.js";
-import "driver.js/dist/driver.css";
 
 const driverObj = driver({
   showProgress: true,
