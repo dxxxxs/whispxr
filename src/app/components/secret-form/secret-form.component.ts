@@ -4,6 +4,7 @@ import { SecretsService } from '../../_services/secrets.service';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { AlertService } from '../../_services/alert.service';
 import { driver } from "driver.js";
+import { LocalStorageService } from '../../_services/local-storage.service';
 
 const driverObj_2 = driver();
 
@@ -20,7 +21,7 @@ export class SecretFormComponent {
 
   base_url: string = 'https://whispxr.onrender.com/#/';
 
-  constructor(private SecretsService: SecretsService, private clipboard: Clipboard, private AlertService: AlertService) { }
+  constructor(private SecretsService: SecretsService, private clipboard: Clipboard, private AlertService: AlertService, private LocalStorageService: LocalStorageService) { }
 
   form = new FormGroup({
     text: new FormControl('', { nonNullable: true }),
@@ -69,13 +70,18 @@ export class SecretFormComponent {
             const element = document.querySelector('#secret_url_container');
             if (element) {
               clearInterval(checkElement);
-              driverObj_2.highlight({
-                element: '#secret_url_container',
-                popover: {
-                  title: 'Congratulations!',
-                  description: 'You’ve created your first Whispxr! Share it now and don’t forget the password.',
-                },
-              });
+
+              const tutorialSeen = this.LocalStorageService.isTutorialSeen('success');
+              if (!tutorialSeen) {
+                driverObj_2.highlight({
+                  element: '#secret_url_container',
+                  popover: {
+                    title: 'Congratulations!',
+                    description: 'You’ve created your first Whispxr! Share it now and don’t forget the password.',
+                  },
+                });
+                this.LocalStorageService.markTutorialAsSeen('success');
+              }
             }
           }, 100);
 

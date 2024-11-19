@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { SecretFormComponent } from '../../components/secret-form/secret-form.component';
 import { SecretsService } from '../../_services/secrets.service';
 import { driver } from "driver.js";
+import { LocalStorageService } from '../../_services/local-storage.service';
 
 const driverObj = driver({
   popoverClass: 'driverjs-theme',
@@ -31,12 +32,16 @@ export class HomePageComponent {
   count: number = 0;
   targetCount: number = 0; // Valor objetivo que obtendrás de la API
 
-  constructor(private SecretsService: SecretsService) {
+  constructor(private SecretsService: SecretsService, private LocalStorageService: LocalStorageService) {
     this.getCounter();
   }
 
   ngOnInit() {
-    driverObj.drive();
+    const tutorialSeen = this.LocalStorageService.isTutorialSeen('welcome');
+    if (!tutorialSeen) {
+      driverObj.drive();
+      this.LocalStorageService.markTutorialAsSeen('welcome');
+    }
   }
 
   getCounter() {
