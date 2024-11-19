@@ -7,7 +7,6 @@ export class LocalStorageService {
 
   constructor() { }
 
-  // Método para guardar un objeto en localStorage
   setItem(key: string, value: any): void {
     try {
       localStorage.setItem(key, JSON.stringify(value));
@@ -16,7 +15,6 @@ export class LocalStorageService {
     }
   }
 
-  // Método para obtener un objeto desde localStorage
   getItem(key: string): any {
     try {
       const value = localStorage.getItem(key);
@@ -27,7 +25,6 @@ export class LocalStorageService {
     }
   }
 
-  // Método para eliminar un ítem de localStorage
   removeItem(key: string): void {
     try {
       localStorage.removeItem(key);
@@ -36,7 +33,6 @@ export class LocalStorageService {
     }
   }
 
-  // Método para limpiar todo el localStorage
   clear(): void {
     try {
       localStorage.clear();
@@ -45,13 +41,11 @@ export class LocalStorageService {
     }
   }
 
-  // Método para comprobar si un tutorial ha sido visto
   isTutorialSeen(tutorialKey: string): boolean {
     const tutorials = this.getItem('tutorials');
     return tutorials ? tutorials[tutorialKey] : false;
   }
 
-  // Método para marcar un tutorial como visto
   markTutorialAsSeen(tutorialKey: string): void {
     let tutorials = this.getItem('tutorials') || {};
     tutorials[tutorialKey] = true;

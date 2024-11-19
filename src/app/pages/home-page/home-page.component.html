@@ -1,6 +1,6 @@
 <div class="container mt-5 pb-5 mb-5">
   <div class="d-flex justify-content-between flex-wrap flex-row align-items-stretch">
-    <div class="slide-in-bck-left d-flex align-items-start flex-column flex-fill white-text">
+    <div class="slide-in-bck-left d-flex align-items-start flex-column flex-fill black-text">
       <div class="mt-5 p-2" style="width: 100%;">
         <h1 class="">Whispxr</h1>
         <h2>Your secrets, safely kept</h2>
@@ -16,6 +16,11 @@
     </div>
     <div class="d-flex flex-column align-items-center flex-fill justify-content-center slide-in-bck-right"
       style="position: relative; min-height: 100vh; max-width: 500px;">
+      <div class="d-flex flex-row justify-content-end align-items-end" style="width: 100%;">
+        <button type="button" class="btn btn-sm btn-outline-secondary rounded-circle" (click)="runWelcomeDriver()">
+          <i class="bi bi-question-lg"></i>
+        </button>
+      </div>
       <app-secret-form id="secretForm" style="width: 100%; max-width: 500px; flex-shrink: 0; height: 100%;"
         (createdSecret)="getCounter()">
       </app-secret-form>

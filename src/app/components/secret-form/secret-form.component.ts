@@ -6,7 +6,7 @@ import { AlertService } from '../../_services/alert.service';
 import { driver } from "driver.js";
 import { LocalStorageService } from '../../_services/local-storage.service';
 
-const driverObj_2 = driver();
+const driverSuccess = driver();
 
 @Component({
   selector: 'app-secret-form',
@@ -71,9 +71,15 @@ export class SecretFormComponent {
             if (element) {
               clearInterval(checkElement);
 
+              element.classList.add('slide-in-fwd-center');
+
+              setTimeout(() => {
+                element.classList.remove('slide-in-fwd-center');
+              }, 1500); // Duración de la animación en ms
+
               const tutorialSeen = this.LocalStorageService.isTutorialSeen('success');
               if (!tutorialSeen) {
-                driverObj_2.highlight({
+                driverSuccess.highlight({
                   element: '#secret_url_container',
                   popover: {
                     title: 'Congratulations!',
