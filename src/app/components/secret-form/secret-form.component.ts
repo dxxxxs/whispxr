@@ -89,7 +89,6 @@ export class SecretFormComponent {
         error: err => {
           console.log(err);
           this.isWaitingResponse = false;
-
         }
       });
     }
