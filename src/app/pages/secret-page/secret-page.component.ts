@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { SecretViewerComponent } from "../../components/secret-viewer/secret-viewer.component";
-import { NavigationStart, Router } from '@angular/router';
-import Swal from 'sweetalert2';
 import { SecretsService } from '../../_services/secrets.service';
 
 @Component({
@@ -20,7 +18,7 @@ export class SecretPageComponent {
     this.getCounter();
   }
 
-  getCounter(){
+  getCounter() {
     this.SecretsService.getCounter().subscribe({
       next: res => {
         this.targetCount = res.body.count;

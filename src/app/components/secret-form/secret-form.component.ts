@@ -33,6 +33,12 @@ export class SecretFormComponent {
   final_url: string = '';
   isWaitingResponse: boolean = false;
 
+
+  ngOnInit() {
+    this.startTypingEffect();
+  }
+
+
   submit() {
 
 
@@ -95,21 +101,6 @@ export class SecretFormComponent {
     this.AlertService.fireToastSuccessTimer("URL copied to clipboard");
   }
 
-  shareOnWhatsApp() {
-    window.open(`https://wa.me/?text=${encodeURIComponent(this.final_url)}`, '_blank');
-  }
-
-  shareOnMessenger() {
-    window.open(`fb-messenger://share/?link=${encodeURIComponent(this.final_url)}`, '_blank');
-  }
-
-  shareOnTelegram() {
-    window.open(`https://t.me/share/url?url=${encodeURIComponent(this.final_url)}`, '_blank');
-  }
-
-  shareOnTwitter() {
-    window.open(`https://twitter.com/share?url=${encodeURIComponent(this.final_url)}`, '_blank');
-  }
   shareNavigator() {
     const shareData: ShareData = {
       title: "Whispxr",
@@ -125,5 +116,52 @@ export class SecretFormComponent {
     } else {
       console.warn('La API de compartir no está disponible en este navegador.');
     }
+  }
+
+  phrases: string[] = [
+    "The code to open the chest is in the blue book...",
+    "Sometimes the stars don’t shine, but they’re still there...",
+    "Find the key under the broken clock...",
+    "This too shall pass, trust me...",
+    "Don’t forget to check the pocket of your coat...",
+    "Tuesday at 8, at the usual place...",
+    "I know you have doubts, but everything will be okay...",
+    "The answer is on the first page of the journal...",
+    "I miss you more than you think...",
+    "The password is 'RedBird'..."
+  ];
+
+
+  currentText: string = '';
+  private phraseIndex: number = 0;
+  private charIndex: number = 0;
+  isTyping: boolean = true;
+
+  startTypingEffect(): void {
+    const currentPhrase = this.phrases[this.phraseIndex];
+
+    if (this.charIndex <= currentPhrase.length && this.isTyping) {
+      this.currentText = currentPhrase.slice(0, this.charIndex + 1);
+      this.charIndex++;
+      setTimeout(() => this.startTypingEffect(), 100);
+    }
+    else if (this.isTyping) {
+      this.isTyping = false;
+      setTimeout(() => this.startTypingEffect(), 400);
+    }
+    else if (this.charIndex > 0 && !this.isTyping) {
+      this.currentText = currentPhrase.slice(0, this.charIndex - 1);
+      this.charIndex--;
+      setTimeout(() => this.startTypingEffect(), 50);
+    }
+    else {
+      this.isTyping = true;
+      this.phraseIndex = (this.phraseIndex + 1) % this.phrases.length;
+      this.startTypingEffect();
+    }
+  }
+
+  showSharingModal() {
+    this.AlertService.fireShareModal(this.final_url);
   }
 }

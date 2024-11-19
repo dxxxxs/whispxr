@@ -2,15 +2,15 @@
 body {
     font-family: 'Comfortaa', sans-serif;
     font-weight: 300;
-    background-color: hsla(219, 74%, 10%, 1);
-    background-image:
-        radial-gradient(at 40% 20%, hsla(223, 37%, 23%, 1) 0px, transparent 50%),
-        radial-gradient(at 80% 0%, hsla(219, 74%, 10%, 1) 0px, transparent 50%),
-        radial-gradient(at 0% 50%, hsla(223, 37%, 23%, 1) 0px, transparent 50%),
-        radial-gradient(at 80% 50%, hsla(219, 74%, 10%, 1) 0px, transparent 50%),
-        radial-gradient(at 0% 100%, hsla(223, 37%, 23%, 1) 0px, transparent 50%),
-        radial-gradient(at 80% 100%, hsla(240, 0%, 73%, 1) 0px, transparent 50%),
-        radial-gradient(at 0% 0%, hsla(341, 0%, 100%, 1) 0px, transparent 50%);
+    // background-color: hsla(219, 74%, 10%, 1);
+    // background-image:
+    //     radial-gradient(at 40% 20%, hsla(223, 37%, 23%, 1) 0px, transparent 50%),
+    //     radial-gradient(at 80% 0%, hsla(219, 74%, 10%, 1) 0px, transparent 50%),
+    //     radial-gradient(at 0% 50%, hsla(223, 37%, 23%, 1) 0px, transparent 50%),
+    //     radial-gradient(at 80% 50%, hsla(219, 74%, 10%, 1) 0px, transparent 50%),
+    //     radial-gradient(at 0% 100%, hsla(223, 37%, 23%, 1) 0px, transparent 50%),
+    //     radial-gradient(at 80% 100%, hsla(240, 0%, 73%, 1) 0px, transparent 50%),
+    //     radial-gradient(at 0% 0%, hsla(341, 0%, 100%, 1) 0px, transparent 50%);
 }
 
 h1 {
@@ -27,9 +27,66 @@ h3 {
 
 
 .white-text {
-    color: #FAF9F6;
+    color: black;
 }
 
 .white-background {
     background-color: #FAF9F6;
 }
+
+
+// Driver.js styling
+
+.driver-popover.driverjs-theme {
+    background: #FAF9F6;
+    color: hsla(341, 0%, 100%, 1);
+    border: 1px solid hsla(240, 0%, 73%, 1);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.driver-popover.driverjs-theme .driver-popover-title {
+    font-size: 20px;
+    color: hsla(219, 74%, 10%, 1);
+    font-family: 'Comfortaa', sans-serif;
+}
+
+.driver-popover.driverjs-theme .driver-popover-description,
+.driver-popover.driverjs-theme .driver-popover-progress-text {
+    color: hsla(223, 37%, 23%, 1);
+    font-size: 14px;
+    font-family: 'Comfortaa', sans-serif;
+}
+
+.driver-popover.driverjs-theme button {
+    flex: 1;
+    text-align: center;
+    background-color: #0d6efd;
+    color: hsla(341, 0%, 100%, 1);
+    border: 2px solid #0d6efd;
+    font-size: 14px;
+    padding: 5px 12px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    font-family: 'Comfortaa', sans-serif;
+    text-shadow: 0px 0px 0 #fff;
+}
+
+.driver-popover.driverjs-theme button:hover {
+    background-color: #0b5ed7;
+    color: hsla(341, 0%, 100%, 1);
+    border-color: #0a58ca;
+}
+
+.driver-popover.driverjs-theme .driver-popover-navigation-btns {
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.driver-popover-footer button:hover,
+.driver-popover-footer button:focus {
+    background-color: #0d6efd !important;
+}
+
+
+// Driver.js styling END
